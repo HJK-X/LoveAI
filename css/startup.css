@@ -4,6 +4,7 @@ svg:not(:root) {
 
 :root {
     --logospd: 4s;
+    --locy: 30%;
 }
 
 body {
@@ -16,42 +17,42 @@ body {
 
 .animate #logo-L {
     animation: FadeIn var(--logospd) .5s forwards;
-    transform: translate(15%, 50%);
+    transform: translate(5%, var(--locy));
     transform-origin: center left;
     opacity: 0;
 }
 
 .animate #logo-O {
     animation: FadeIn var(--logospd) 1s forwards;
-    transform: translate(20%, 50%);
+    transform: translate(10%, var(--locy));
     transform-origin: center left;
     opacity: 0;
 }
 
 .animate #logo-V {
     animation: FadeIn var(--logospd) 1.5s forwards;
-    transform: translate(25%, 50%);
+    transform: translate(15%, var(--locy));
     transform-origin: center left;
     opacity: 0;
 }
 
 .animate #logo-E {
     animation: FadeIn var(--logospd) 2s forwards;
-    transform: translate(30%, 50%);
+    transform: translate(20%, var(--locy));
     transform-origin: center left;
     opacity: 0;
 }
 
 .animate #logo-A {
     animation: FadeIn var(--logospd) 2.7s forwards;
-    transform: translate(40%, 50%);
+    transform: translate(30%, var(--locy));
     transform-origin: center left;
     opacity: 0;
 }
 
 .animate #logo-I {
     animation: FadeIn var(--logospd) 2.7s forwards;
-    transform: translate(40%, 50%);
+    transform: translate(30%, var(--locy));
     transform-origin: center left;
     opacity: 0;
 }
@@ -75,4 +76,8 @@ body {
     border-color: #ffe4ef !important;
     color: #cf3e3b;
     font-family: cursive;
+    width: 15%;
+    height: 8%;
+    font-size: 5vw;
+    padding: 0;
 }
