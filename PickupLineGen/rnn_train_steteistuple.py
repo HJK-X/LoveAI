@@ -14,8 +14,8 @@
 # limitations under the License.
 
 import tensorflow as tf
-from tensorflow.contrib import layers
-from tensorflow.contrib import rnn  # rnn stuff temporarily in contrib, moving back to code in TF 1.1
+from tensorflow.keras import layers
+from tensorflow.keras.layers import RNN  # rnn stuff temporarily in contrib, moving back to code in TF 1.1
 import os
 import time
 import math
@@ -58,8 +58,8 @@ Xo = tf.one_hot(X, ALPHASIZE, 1.0, 0.0)                 # [ BATCHSIZE, SEQLEN, A
 Y_ = tf.placeholder(tf.uint8, [None, None], name='Y_')  # [ BATCHSIZE, SEQLEN ]
 Yo_ = tf.one_hot(Y_, ALPHASIZE, 1.0, 0.0)               # [ BATCHSIZE, SEQLEN, ALPHASIZE ]
 
-cells = [rnn.GRUCell(INTERNALSIZE) for _ in range(NLAYERS)]
-multicell = rnn.MultiRNNCell(cells, state_is_tuple=True)
+cells = [RNN.GRUCell(INTERNALSIZE) for _ in range(NLAYERS)]
+multicell = RNN.MultiRNNCell(cells, state_is_tuple=True)
 
 # When using state_is_tuple=True, you must use multicell.zero_state
 # to create a tuple of  placeholders for the input states (one state per layer).

@@ -1,13 +1,13 @@
 import tensorflow as tf
 import numpy as np
 import my_txtutils as txt
-from tensorflow.contrib import layers
-from tensorflow.contrib import rnn  # rnn stuff temporarily in contrib, moving back to code in TF 1.1
+from tensorflow.keras import layers
+from tensorflow.keras.layers import RNN  # rnn stuff temporarily in contrib, moving back to code in TF 1.1
 import os
 import time
 import math
 
-tf.set_random_seed(0)
+tf.random.set_seed(0)
 
 # these must match what was saved !
 ALPHASIZE = txt.ALPHASIZE
