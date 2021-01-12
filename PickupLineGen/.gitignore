@@ -1,0 +1,7 @@
+__pycache__
+log
+checkpoints
+*.zip
+node_modules
+twitter_checkpoints
+twitter_log
