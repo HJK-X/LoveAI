@@ -189,6 +189,7 @@ class Progress:
             p.step()
             p.step(start=True) # to restart form 0%
     The progress bar displays a new header at each restart."""
+
     def __init__(self, maxi, size=100, msg=""):
         """
         :param maxi: the number of steps required to reach 100%
@@ -266,7 +267,7 @@ def read_data_files(directory, validation=True):
     validation_len = 0
     nb_books1 = 0
     for book in reversed(bookranges):
-        validation_len += book["end"]-book["start"]
+        validation_len += book["end"] - book["start"]
         nb_books1 += 1
         if validation_len > total_len // 10:
             break
@@ -275,9 +276,9 @@ def read_data_files(directory, validation=True):
     validation_len = 0
     nb_books2 = 0
     for book in reversed(bookranges):
-        validation_len += book["end"]-book["start"]
+        validation_len += book["end"] - book["start"]
         nb_books2 += 1
-        if validation_len > 90*1024:
+        if validation_len > 90 * 1024:
             break
 
     # 20% of the books is how many books ?
@@ -296,8 +297,8 @@ def read_data_files(directory, validation=True):
 
 
 def print_data_stats(datalen, valilen, epoch_size):
-    datalen_mb = datalen/1024.0/1024.0
-    valilen_kb = valilen/1024.0
+    datalen_mb = datalen / 1024.0 / 1024.0
+    valilen_kb = valilen / 1024.0
     print("Training text size is {:.2f}MB with {:.2f}KB set aside for validation.".format(datalen_mb, valilen_kb)
           + " There will be {} batches per epoch".format(epoch_size))
 
@@ -307,7 +308,7 @@ def print_validation_header(validation_start, bookranges):
     books = ''
     for i in range(bookindex, len(bookranges)):
         books += bookranges[i]["name"]
-        if i < len(bookranges)-1:
+        if i < len(bookranges) - 1:
             books += ", "
     print("{: <60}".format("Validating on " + books), flush=True)
 
@@ -329,5 +330,6 @@ def print_text_generation_footer():
 
 def frequency_limiter(n, multiple=1, modulo=0):
     def limit(i):
-        return i % (multiple * n) == modulo*multiple
+        return i % (multiple * n) == modulo * multiple
+
     return limit

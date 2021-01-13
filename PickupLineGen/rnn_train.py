@@ -1,18 +1,3 @@
-# encoding: UTF-8
-# Copyright 2017 Google.com
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow.keras.layers import RNN  # rnn stuff temporarily in contrib, moving back to code in TF 1.1
@@ -38,6 +23,7 @@ tf.random.set_seed(0)
 #         To see the curves drift apart ("overfitting") try to use an insufficient amount of
 #         training data (shakedir = "shakespeare/t*.txt" for example)
 #
+
 SEQLEN = 30
 BATCHSIZE = 100
 ALPHASIZE = txt.ALPHASIZE
@@ -59,15 +45,15 @@ txt.print_data_stats(len(codetext), len(valitext), epoch_size)
 #
 # the model (see FAQ in README.md)
 #
-lr = tf.placeholder(tf.float32, name='lr')  # learning rate
-pkeep = tf.placeholder(tf.float32, name='pkeep')  # dropout parameter
-batchsize = tf.placeholder(tf.int32, name='batchsize')
+lr = tf.Variable(tf.float32, name='lr')  # learning rate
+pkeep = tf.Variable(tf.float32, name='pkeep')  # dropout parameter
+batchsize = tf.Variable(tf.int32, name='batchsize')
 
 # inputs
-X = tf.placeholder(tf.uint8, [None, None], name='X')  # [ BATCHSIZE, SEQLEN ]
+X = tf.Tensor(tf.uint8, [None, None], name='X')  # [ BATCHSIZE, SEQLEN ]
 Xo = tf.one_hot(X, ALPHASIZE, 1.0, 0.0)  # [ BATCHSIZE, SEQLEN, ALPHASIZE ]
 # expected outputs = same sequence shifted by 1 since we are trying to predict the next character
-Y_ = tf.placeholder(tf.uint8, [None, None], name='Y_')  # [ BATCHSIZE, SEQLEN ]
+Y_ = tf.Tensor(tf.uint8, [None, None], name='Y_')  # [ BATCHSIZE, SEQLEN ]
 Yo_ = tf.one_hot(Y_, ALPHASIZE, 1.0, 0.0)  # [ BATCHSIZE, SEQLEN, ALPHASIZE ]
 # input state
 Hin = tf.placeholder(tf.float32, [None, INTERNALSIZE * NLAYERS], name='Hin')  # [ BATCHSIZE, INTERNALSIZE * NLAYERS]
@@ -213,7 +199,7 @@ model_pkeep = tf.saved_model.utils.build_tensor_info(pkeep)
 model_Hin = tf.saved_model.utils.build_tensor_info(Hin)
 model_batchsize = tf.saved_model.utils.build_tensor_info(batchsize)
 
-output_1 = tf.saved_model.utils.build_tensor_info(tf.placeholder(tf.float32, [None, ALPHASIZE], name='classoutput'))
+output_1 = tf.saved_model.utils.build_tensor_info(tf.Variable(tf.float32, [None, ALPHASIZE], name='classoutput'))
 
 classification_signature = (
     tf.saved_model.signature_def_utils.build_signature_def(
