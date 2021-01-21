@@ -20,11 +20,11 @@ tmp = []
 print("Modifying File")
 for i in range(len(arr)):
     line = arr[i]
-    if "("  in line or "[" in line:
+    if "(" in line or "[" in line:
         continue
 
     tmp.append(line)
-    
+
 arr = tmp
 
 print("Writing File")
@@ -33,6 +33,3 @@ outfile = path+"/dataout.txt"
 with open(outfile, 'w', encoding='utf-8') as f:
     for i in range(len(arr)):
         f.write(arr[i])
-
-
-    
