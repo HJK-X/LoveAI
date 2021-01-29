@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Love AI- Enter Your Love!</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='step1.css') }}">
+
+
+<body>
+    <!-- Input Info -->
+    <div class="w3-content" style="text-align:left;margin-top: 2%">
+        <form id="form">
+            <div class="row">
+                <div class="col">
+                    <label for="name">Name/Nickname</label>
+                    <input type="text" class="form-control" id="name"
+                        placeholder="Enter the name of the person you are interested in" required
+                        oninput="setCustomValidity('')"
+                        oninvalid="this.setCustomValidity('You don\'t even know their name? Weirdo.')">
+                </div>
+
+                <div class="col">
+                    <label for="pronoun">Pronouns</label>
+                    <input type="text" class="form-control" id="pronoun" placeholder="What are their pronouns?" required
+                        oninput="setCustomValidity('')"
+                        oninvalid="this.setCustomValidity('Pronouns are important. I don\'t want to misgender them.')">
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="likes">What do they like?</label>
+                <textarea class="form-control" id="likes" rows="3"
+                    placeholder="Separate items out with commas (ex: 1, 2, 3)" required oninput="setCustomValidity('')"
+                    oninvalid="this.setCustomValidity('Why don\'t you know what they like? At least put animals or something.')"></textarea>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="dislikes">What do they dislike?</label>
+                <textarea class="form-control" id="dislikes" rows="3"
+                    placeholder="Separate items out with commas (ex: 1, 2, 3)" required oninput="setCustomValidity('')"
+                    oninvalid="this.setCustomValidity('Since you don\'t know what they don\'t like, here\'s a suggestion: trash.')"></textarea>
+            </div>
+            <br>
+
+            <input class="btn btn-primary" type="submit" id="submit" value="submit" />
+        </form>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $("#form").submit(function (e) {
+            e.preventDefault();
+
+            var dt = {
+                name: $("#name").val(),
+                pronoun: $("#pronoun").val(),
+                likes: $("#likes").val(),
+                dislikes: $("#dislikes").val()
+            };
+
+            $.post("/step2", dt);
+
+            location.href = "{{ url_for('step2') }}"
+        })
+    });
+</script>
+
+</html>

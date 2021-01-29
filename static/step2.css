@@ -1,0 +1,19 @@
+body {
+    background-color: #7ec6df;
+}
+
+label {
+    color: #b9376f;
+}
+
+.form-control, .form-control:focus {
+    background-color: #ffe4ef;
+    color: #cf3e3b;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #ffe4ef !important;
+    border-color: #ffe4ef !important;
+    color: #cf3e3b;
+    font-family: cursive;
+}
