@@ -2,3 +2,4 @@
 PickupLineGen/twitter_data/training.1600000.processed.noemoticon.csv
 models/1558M/model.ckpt.data-00000-of-00001
 PickupLineModel/data/training.csv
+ML/Generator/PickupLineGenerator/
