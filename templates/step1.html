@@ -65,7 +65,7 @@
                 dislikes: $("#dislikes").val()
             };
 
-            $.post("/step2", dt);
+            $.post("/load", dt);
 
             location.href = "{{ url_for('step2') }}"
         })
