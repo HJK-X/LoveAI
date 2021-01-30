@@ -6,6 +6,8 @@ pip install -r requirements.txt
 
 python main.py
 
+open browser and go to localhost:8080
+
 
 <br>
 
