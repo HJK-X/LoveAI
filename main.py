@@ -92,9 +92,14 @@ def getPrediction():
 
 
 def addPreds():
+    for i in range(3):
+        extendPreds()
+    random.shuffle(predictions)
+
+
+def extendPreds():
     rng = random.randint(0, len(starts)-1)
     predictions.extend(predict(starts[rng], model, tokenizer))
-    random.shuffle(predictions)
 
 
 def nextPred():
