@@ -70,8 +70,8 @@ def getStarts():
     for like in likes:
         starts.append("I like you like a "+like)
         starts.append("Are you a "+like)
-    for dislike in dislikes:
-        starts.append("I know you hate "+dislike)
+    # for dislike in dislikes:
+        # starts.append("I know you hate "+dislike)
 
     starts.append("Hi "+name+", ")
     starts.append("")
@@ -92,8 +92,7 @@ def getPrediction():
 
 
 def addPreds():
-    for i in range(3):
-        extendPreds()
+    extendPreds()
     random.shuffle(predictions)
 
 
